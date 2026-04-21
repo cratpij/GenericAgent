@@ -63,6 +63,5 @@ class TMWebDriver:
                 print(f"Browser http connected: {session.url} (Session: {session_id})")  
                 self.sessions[session_id] = session
             session = self.sessions[session_id]
+            # TODO: investigate why reconnect check uses queue.Queu (truncated in original) -- using queue.Queue here
             if session.disconnect_at is not None and session.type != 'http': session.reconnect(queue.Queue(), session_info)
-            session.disconnect_at = None
-            if session.type == 'htt
