@@ -46,3 +46,5 @@ If your skill only makes sense for a specific workflow, it's a marketplace candi
 ---
 
 > **Personal fork note:** I'm using this repo primarily for learning and local experimentation. I don't plan to open upstream PRs unless I stumble onto something genuinely useful. If you found this fork, feel free to poke around.
+>
+> **My focus areas:** skill authoring patterns and understanding how the agent loop handles context window pressure. Notes in `docs/personal/` as I go.
