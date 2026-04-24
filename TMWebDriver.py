@@ -60,11 +60,10 @@ class TMWebDriver:
             session_info = {'url': data.get('url'), 'title': data.get('title', ''), 'type': 'http'}  
             if session_id not in self.sessions: 
                 session = Session(session_id, session_info, queue.Queue())
+                # Use maxsize=50 to prevent unbounded queue growth if commands pile up
+                session.http_queue = queue.Queue(maxsize=50)
                 print(f"Browser http connected: {session.url} (Session: {session_id})")  
                 self.sessions[session_id] = session
             session = self.sessions[session_id]
             # If the session exists but was disconnected, treat it as a reconnect with a fresh queue
-            if session.disconnect_at is not None:
-                session.reconnect(queue.Queue(), session_info)
-                print(f"Browser http reconnected: {session.url} (Session: {session_id})")
-            # TODO: investigate why reconnect check uses queue.Queue -- using queue
+    
