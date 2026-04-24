@@ -60,10 +60,9 @@ class TMWebDriver:
             session_info = {'url': data.get('url'), 'title': data.get('title', ''), 'type': 'http'}  
             if session_id not in self.sessions: 
                 session = Session(session_id, session_info, queue.Queue())
-                # Use maxsize=50 to prevent unbounded queue growth if commands pile up
-                session.http_queue = queue.Queue(maxsize=50)
+                # Reduced maxsize from 50 to 20 - in practice commands rarely queue this deep
+                # and a smaller limit makes it easier to spot runaway command dispatch bugs
+                session.http_queue = queue.Queue(maxsize=20)
                 print(f"Browser http connected: {session.url} (Session: {session_id})")  
                 self.sessions[session_id] = session
-            session = self.sessions[session_id]
-            # If the session exists but was disconnected, treat it as a reconnect with a fresh queue
-    
+     
