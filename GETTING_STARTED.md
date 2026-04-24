@@ -110,7 +110,7 @@ native_claude_config = {
 **变量命名决定接口格式**（不是模型名决定的）：
 
 | 变量名包含 | 触发的 Session | 适用场景 |
-|-----------|---------------|----------|
+|-----------|---------------|---------|
 | `oai` | OpenAI 兼容 | 大多数 API 服务、OpenAI 官方 |
 | `claude`（不含 `native`） | Claude 兼容 | Claude API 服务 |
 | `native` + `claude` | Claude 标准工具调用 | 较弱模型推荐，工具调用更规范 |
@@ -148,6 +148,8 @@ python3 agentmain.py
 
 > 💡 Windows 上如果 `python3` 不识别，换成 `python agentmain.py`。
 
+> 💡 **个人提示**：如果终端关闭后想再次启动，不需要重新 `cd`，可以把路径保存到一个启动脚本里（Mac: `run.sh`，Windows: `run.bat`），双击即可。
+
 ---
 
 ## 4. 让 Agent 自己装依赖
@@ -155,9 +157,5 @@ python3 agentmain.py
 Agent 启动后，只需要一句话，它就会自己搞定所有依赖：
 
 ```
-请查看你的代码，安装所有用得上的 python 依赖
+请查看你的代码，安装所有用得上的 pyth
 ```
-
-Agent 会自己读代码、找出需要的包、全部装好。
-
-> ⚠️ 如果遇到网络问题导致 Agent 无法调用
